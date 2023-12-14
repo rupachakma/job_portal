@@ -1,0 +1,26 @@
+
+{% if user.is_authenticated and user.user_type == 'jobseeker' %}
+    {% if job_application %}
+        <p>You have already applied for this job. Your application:</p>
+        <p>Cover Letter: {{ job_application.cover_letter }}</p>
+        {% if job_application.resume %}
+            <p>Resume: <a href="{{ job_application.resume.url }}" target="_blank">View Resume</a></p>
+        {% endif %}
+    {% else %}
+        <form method="post" action="{% url 'apply_for_job' job.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="cover_letter">Cover Letter:</label>
+                <textarea class="form-control" name="cover_letter" id="cover_letter" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="resume">Resume (PDF only):</label>
+                <input type="file" name="resume" accept=".pdf" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Apply Now</button>
+        </form>
+    {% endif %}
+{% else %}
+    <p>Login as a job seeker to apply for this job.</p>
+{% endif %}
+

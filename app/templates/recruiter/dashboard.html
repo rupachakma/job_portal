@@ -1,0 +1,49 @@
+{% extends "../base.html" %}
+{% block content %}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .dashboard-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .dashboard-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .profile-section, .applied-jobs {
+        background-color: #718191;
+        color: #ffffff;
+        padding: 20px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    .update-profile-btn, .applied-jobs a {
+        color: #234569;
+    }
+</style>
+
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h2>Recruiter Dashboard</h2>
+        <p>Welcome  {{request.user.username}}
+        </p>
+    </div>
+
+    <div class="profile-section">
+        <h3>Profile</h3>
+        <p>Name: {{request.user.username}}</p>
+        <p>Email:{{request.user.email}}</p>
+        <p>Address: Bangladesh</p>
+        <a href="#" class="btn btn-light update-profile-btn"><i class="fas fa-edit"></i> Update Profile</a>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends "../base.html" %}
+{% block content %}
+
+<section class="container search mt-4">
+    <h2 class="mb-4">Find Your Dream Job</h2>
+    <form action="#" method="get">
+        <div class="form-row d-flex">
+            <div class="col-md-3 mb-3">
+                <input type="text" class="form-control" name="keywords" placeholder="Keywords">
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="text" class="form-control" name="location" placeholder="Location">
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="text" class="form-control" name="company" placeholder="Company">
+            </div>
+            <div class="col-md-3 mb-3">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+
+
+
+<section class="container job-listings mt-4">
+    <h2 class="mb-4">Latest Job Listings</h2>
+    <ul class="list-group">
+        {% for i in job_posts %}
+        <li class="list-group-item">
+            
+            <h3>{{i.title}}</h3>
+            <p>Vacancy: {{i.number_of_openings}}</p>
+            <p>Description: {{i.job_description}}</p>
+            <p>Category: {{i.category}}</p>
+            <a href="{% url 'applyjob' i.id %}" class="btn btn-primary">Apply Now</a>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock content %}

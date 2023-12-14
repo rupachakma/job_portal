@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto p-5">
+    <div class="p-5 shadow">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Title</th>
+                    <th class="text-center">Vacancy</th>
+                    <th class="text-center">Descripton</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in job_posts %}
+                <tr>
+                    <td>{{i.id}}</td>
+                    <td>{{i.title}}</td>
+                    <td>{{i.number_of_openings}}</td>
+                    <td>{{i.job_description}}</td>
+                    <td>{{i.category}}</td>
+                    
+                    <td class="d-flex gap-2">
+                        {% if user.user_type == 'jobseeker' %}
+                            <a href="" class="btn btn-primary btn-sm">Apply</a>
+                        {% elif user.user_type == 'recruiter' %}
+                            <a href="{% url 'updatejob' i.id %}" class="btn btn-success btn-sm">Edit</a>
+                            <a href="{% url 'deletejob' i.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        {% endif %}
+                    </td>     
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+    </div>
+</div>
+
+{% endblock content %}
